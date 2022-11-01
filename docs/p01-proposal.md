@@ -95,7 +95,7 @@
       |--------------|--------------|-----------|
       | prev_hiv.csv | 194          | 22        |
 
-  - World Health Organization. Contact Us. [https://apps.who.int/gho/data/view.main.22500?lang=en](hhttps://apps.who.int/gho/data/view.main.22500?lang=en). Accessed 31 Oct. 2022.
+  - World Health Organization. Contact Us. [https://apps.who.int/gho/data/view.main.22500?lang=en](https://apps.who.int/gho/data/view.main.22500?lang=en). Accessed 31 Oct. 2022.
 
   \
   (a)	This data was collected by the World Health Organization and was last updated on June  12, 2015.  The data was collected and updated every year for the purpose of analysis by major corporations.
