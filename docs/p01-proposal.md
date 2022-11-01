@@ -1,8 +1,61 @@
-# Title of your Project: Project Proposal 
+# **Allocation of Health: Project Proposal**
+#### Code Name: **_DMoney_**
 
-**TODO**: Edit this file. Your project proposal goes here.
+**Authors:** Amit Peled (apeled@uw.edu), Jeffrey Zeng (jmz1000@uw.edu), and Shawn Leonard (sleo14@uw.edu)
+\
+**Affiliation:** _INFO-201: Technical Foundations of Informatics - The Information School - University of Washington._
+\
+**Date:** 26 October 2022
 
-For what to do, see the [`../instructions/`](../instructions/) directory, specifically: 
+## **Abstract**
+- We are concerned with countries' expenditure in regard to the physical health care provided for their citizens. Citizens' accessibility to care draws great worry and is important as many countries in our world today are unable to provide their citizens with adequate medicines and treatment. To address this concern and present correlation, we plan to analyze the healthcare expenditures, medicine availability, and depict a disease that impacts the livelihood of many individuals, HIV, within each country.
 
-* [Design Brief](../instructions/project-design-brief.pdf)
-* [Project Proposal Requirements](../instructions/p01-proposal-requirements.md)
+## **Key Words**
+- Health
+- Medical Expenditure
+- Medicine Availability
+- HIV
+
+## **Introduction**
+- For our project, we are analyzing the relationship between national healthcare expenditure and availability of medical resources globally. We will be examining three datasets with emphasis on current health expenditure per capita by country, generic medicine availability by country, and global HIV prevalence. In particular we are interested in how the way a country finances its health systems can affect various statistics about HIV like prevalence, mortality rates, and amount of people receiving adequate treatment. We aim to start our research on a broader scale by focusing on the relationship between medicine and health expenditure, and then narrow that down to impacts on HIV and AIDS. By wrangling this data, we hope to uncover certain trends that appear and create meaning behind them through our own visualizations and findings. We aim to display the insights gained during this data analysis in an effective manner for others to explore as well.
+
+## **Problem Domain**
+- **Project Framing:**
+  - Three datasets related to global health and the relationships between them will be explored. We will conduct data analysis on these and report our findings through visualizations and well documented reports.
+
+- **Human Values:**
+  - The human values being supported by this research include democracy, fairness, and human dignity. The health of a country’s citizens is a responsibility that is bestowed upon every country and is therefore important to the whole world. As stated in the Declaration of Alma-Ata, “The Conference strongly reaffirms that health, which is a state of complete physical, mental, and social well-being, and not merely the absence of disease or infirmity, is a fundamental human right and that the attainment of the highest possible level of health is a most important world-wide social goal whose realization requires the action of many other social and economic sectors in addition to the health sector” ([World Health Organization](https://www.who.int/teams/social-determinants-of-health/declaration-of-alma-ata)).
+
+- **Direct Stakeholders:**
+  - The direct stakeholders of our research findings would be people looking to present evidence of trends between health expenditure and HIV prevalence.
+
+- **Indirect Stakeholders:**
+  - The indirect stakeholders would be the actual people in these countries who have HIV or people whose lives have been affected through death of a relative or friend.
+
+- **Pros & Cons:**
+  - A possible con of conducting this analysis is that we find no correlation between any of these factors and meaningful insights are not gained. Even during this scenario, the broad framing of our project during the beginning research stages allows us to be flexible and pivot to different directions if we see fit.
+
+- **Similar Research:**
+  - A study on the association between medical spending and citizen health was conducted in 2020 on a select group of African countries. Public health financing continues to be “highly unequal as more than 80% of the world's population live in low and middle-income countries but only account for about 20% of global health expenditure” ([National Library of Medicine](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7366161/)). This study focused on prevalence and mortality rates of tuberculosis and HIV. Another article on the relationship between public health spending and the U.S. economy stated that “the indirect costs associated with preventable chronic diseases—costs related to worker productivity as well as the resulting fiscal drag on the nation’s economic output—may exceed $1 trillion per year” ([Harvard School of Public Health](https://www.hsph.harvard.edu/news/magazine/public-health-economy-election/)). Public health is a topic that has both moral and economic implications.
+
+- **Citations:**
+  - Bein, M., & Coker-Farrell, E. Y. (2020, March). The association between medical spending and health status: A study of selected African countries. Malawi medical journal : the journal of Medical Association of Malawi. Retrieved October 31, 2022, from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7366161/
+  - Public health and the U.S. economy. News. (2014, February 19). Retrieved October 31, 2022, from https://www.hsph.harvard.edu/news/magazine/public-health-economy-election/
+  - World Health Organization. (n.d.). Declaration of Alma-Ata. World Health Organization. Retrieved October 31, 2022, from https://www.who.int/teams/social-determinants-of-health/declaration-of-alma-ata
+
+## **Research Questions**
+- Our first research question is to address if there is a connection between health expenditure and availability of generic medicines, specifically, is there a positive correlation between health expenditure per capita and availability of generic medicines? Answering this question would allow us to gain a better understanding of the impact that expenditure has on not just availability of medicines but by extension health as a whole.
+
+- Next, we will connect the ideas of health expenditure and apply it to the case of HIV. Through this connection we will answer the question, does higher expenditure of a country per capita have any effect or correlation with prevalence of HIV within a country's population? This question allows us to see the direct effect that expenditure has on the prevalence of HIV and possibly other viruses and diseases.
+
+- Finally, we will connect the ideas of availability of generic medicines to HIV also. This will allow us to address the question, does availability of generic medicines, and in turn the ability to treat HIV, within a countries population affect how prevalent HIV is within a target countries population?
+
+
+## **The Dataset**
+- h
+
+## **Expected Implications**
+- If our compiled data allows us to answer the questions that we are looking to answer then it could give us invaluable information on whether or not spending has an effect on the overall health of a country's population. If we find that higher expenditure has a negative correlation with prevalence of health conditions like HIV then we could apply this data to various policies, like the need for and the effectiveness of universal health care.
+
+## **Limitations**
+- One of the massive limitations that we need to address is the fact that the amount spent on healthcare is not exactly a perfect reflection of the overall health of a country. Each and every country has its own social and economic factors that may affect the amount that they spend on healthcare and the prevalence of health conditions like HIV within a country’s population. HIV is also not necessarily a perfectly clear indicator of overall health. This is why our conclusions would provide only a loose reflection of the overall health of a country.
