@@ -87,9 +87,9 @@
 
 - **Prevalence of HIV Among Adults Aged 15 to 49: Estimates by Country**
   - This dataset contains information regarding the estimated prevalence of HIV among adults in 194 different countries. This dataset will help our project team analyze the allocation of money towards healthcare in different countries and see if any discrepancies between prevalence of HIV and funding or accessibility to medicine exits.
-  | Name         | Observations | Variables |
-  |--------------|--------------|-----------|
-  | prev_hiv.csv | 194          | 22        |
+| Name         | Observations | Variables |
+|--------------|--------------|-----------|
+| prev_hiv.csv | 194          | 22        |
   - World Health Organization. Contact Us. [https://apps.who.int/gho/data/view.main.22500?lang=en](hhttps://apps.who.int/gho/data/view.main.22500?lang=en). Accessed 31 Oct. 2022.
 
   \
@@ -112,4 +112,4 @@
 |---------------| -----------------|
 |[Project Proposal (FIX ME!)](./xxx) | A brief description of your P1:Project Proposal
 |[Exploratory Data Analysis](./xxx) | A brief description of your exploratory data analyis report
-|[Interactive Vizualizaiton](./xxx) | A brief description of your final report. 
+|[Interactive Vizualizaiton](./xxx) | A brief description of your final report.
