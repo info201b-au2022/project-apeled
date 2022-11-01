@@ -54,13 +54,13 @@
 ## **The Dataset**
 - **Current Health Expenditure (CHE) per Capita in US$: Data by Country**
   - This dataset contains information regarding the health expenditure per capita in USD for 192 different countries around the world. This dataset will help our project team analyze the allocation of money towards healthcare in different countries and see if any discrepancies between funding and accessibility to medicine or prevalence of HIV exits.
-<p align="center">
+<center>
 
 | Name         | Observations | Variables |
 |--------------|--------------|-----------|
 | CHE_data.csv | 192          | 20        |
 
-<p>
+</center>
   - World Health Organization. Contact Us. [apps.who.int/gho/data/view.main.GHEDCHEpcUSSHA2011v?lang=en](apps.who.int/gho/data/view.main.GHEDCHEpcUSSHA2011v?lang=en). Accessed 31 Oct. 2022.
 
   \
@@ -74,13 +74,13 @@
 
 - **Median Availability of Selected Generic Medicines: Data by Country**
   - This dataset contains information regarding the median availability of selected generic medicine to both public and private distributions within 37 different countries. This dataset will help our project team analyze the allocation of money towards healthcare in different countries and see if any discrepancies between accessibility to medicine and funding or prevalence of HIV exits.
-<p align="center">
+<center>
 
 | Name         | Observations | Variables |
 |--------------|--------------|-----------|
 | med_aval.csv |  37          |  2        |
 
-<p>
+</center>
   - World Health Organization. Contact Us. [https://apps.who.int/gho/data/node.main.488?lang=en](https://apps.who.int/gho/data/node.main.488?lang=en). Accessed 31 Oct. 2022.
 
   \
@@ -94,13 +94,13 @@
 
 - **Prevalence of HIV Among Adults Aged 15 to 49: Estimates by Country**
   - This dataset contains information regarding the estimated prevalence of HIV among adults in 194 different countries. This dataset will help our project team analyze the allocation of money towards healthcare in different countries and see if any discrepancies between prevalence of HIV and funding or accessibility to medicine exits.
-<p align="center">
+<center>
 
 | Name         | Observations | Variables |
 |--------------|--------------|-----------|
 | prev_hiv.csv | 194          | 22        |
 
-</p>
+</center>
   - World Health Organization. Contact Us. [https://apps.who.int/gho/data/view.main.22500?lang=en](hhttps://apps.who.int/gho/data/view.main.22500?lang=en). Accessed 31 Oct. 2022.
 
   \
