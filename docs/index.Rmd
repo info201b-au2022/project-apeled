@@ -45,6 +45,9 @@ summary(cars)
 ```
 
 ## Plots
+``` {r graph2, echo = FALSE}
+source("../source/chart2.R")
+```
 
 ```{r Graph3, echo=FALSE}
 source("../source/chart3.R")
