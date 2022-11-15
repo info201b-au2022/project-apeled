@@ -62,7 +62,3 @@ final_merge <- final_merge %>%
 final_merge <- final_merge %>%
   mutate_if(is.numeric, round, digits = 2)
 
-<<<<<<< HEAD
-=======
-  
->>>>>>> 68cd7e295b4f25255c0bbafb5850bcd4fb9a6718
