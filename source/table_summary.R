@@ -53,6 +53,8 @@ CHE_data <- CHE_data %>%
 
 first_merge <- inner_join(CHE_data, Med_data, by = "Country")
 final_merge <- inner_join(first_merge, HIV_Prev_data, by = "Country")
+final_merge <- final_merge %>%
+  mutate_if(is.numeric, round)
 
 
   
