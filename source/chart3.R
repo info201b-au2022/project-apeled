@@ -53,5 +53,3 @@ merged_data <- inner_join(HIV_data, Med_data, by = "Country")
 Graph3 <- ggplot(data = merged_data) +
   geom_point(mapping =  aes(x = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`, color = Country))
 print(Graph3)
-
-#
