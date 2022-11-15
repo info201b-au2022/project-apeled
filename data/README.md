@@ -5,9 +5,9 @@ In our project, we use the following data files and Application Programming Inte
 ## Data files (TODO: Update/delete for your PROJECT)
 |Data File Name | Brief Description|
 |---------------| -----------------|
-|[med_aval.csv](./data/med_aval.csv) | Contains information regarding the median availability of selected generic medicine to both public and private distributions within 37 different countries.
-|[CHE_data.csv](./data/CHE_data.csv) | Contains information regarding the health expenditure per capita in USD for 192 different countries around the world.
-|[prev_hiv.csv](./data.prev_hiv.csv) | Contains information regarding the estimated prevalence of HIV among adults in 194 different countries. 
+|[med_aval.csv]('https://github.com/info201b-au2022/project-apeled/blob/52c6cd3bc0df1a6d89bc03beaedbf7f4965b588e/data/med_aval.csv') | Contains information regarding the median availability of selected generic medicine to both public and private distributions within 37 different countries.
+|[CHE_data.csv]('https://github.com/info201b-au2022/project-apeled/blob/52c6cd3bc0df1a6d89bc03beaedbf7f4965b588e/data/CHE_data.csv') | Contains information regarding the health expenditure per capita in USD for 192 different countries around the world.
+|[prev_hiv.csv]('https://github.com/info201b-au2022/project-apeled/blob/52c6cd3bc0df1a6d89bc03beaedbf7f4965b588e/data/prev_hiv.csv') | Contains information regarding the estimated prevalence of HIV among adults in 194 different countries. 
 
 ## Application Programming Interfaces (API) (TODO: Update/delete for your PROJECT)
 
