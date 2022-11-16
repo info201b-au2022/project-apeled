@@ -1,37 +1,45 @@
 ---
-title: "Your Project Title"
-author: "project team members"
-date: "1/22/2022"
+title: "Allocation of Health: Project Proposal"
+author: "Amit Peled (apeled@uw.edu), Jeffrey Zeng (jmz1000@uw.edu), and Shawn Leonard (sleo14@uw.edu)"
+date: "11/16/2022"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
-## What is this file for?
+## Dynamic Report
 
-* This file will eventually become your project report for **P02: Exploratory Data Analysis**. Specifically, you will write rmarkdown to report your exploratory data analysis.
+* INSERT REPORT HERE
 
-* Please see Canvas for more details.
-
-## ACCESSING THE /source DIRECTORY
-### Example 1: Source some code and run a function
+## Table
 ```{r}
+source("../source/table_summary.R")
+knitr::kable(summary_table, format="html")
+```
+
+```{r, results='asis'}
+writeLines("td, th { padding : 6px } th { background-color : brown ; color : white; border : 1px solid white; } td { color : brown ; border : 1px solid brown }", con = "mystyle.css")
+source("../source/table_summary.R")
+knitr::kable(summary_table, format = "html")
+```
+
+```{r summary_table, echo=FALSE}
 # Example 1: Note relative path, which can be read: Up one
 # directory(..), down into source (/source), and 
 # then "source" an R file (data_access.R)
-source("../source/data_access.R")
-data_access_test()
+source("../source/table_summary.R")
+
 ```
 
-### Example 2: Initialize a variable and then use it
-```{r}
-# Example 1: This function was "sourced" above
-msg <- data_access_test(" Morgan!")
+### Chart 01:
+``` {r chart3, echo = FALSE}
+source("../source/chart3.R")
 ```
+The purpose of this chart is to compare the two variables of median availability of generic medicines and median prevalence of HIV, to find out if there is any correlation between the two variables. When we look at the chart we can see an almost straight vertical line with an extremely slight negative correlation. This trend suggests that there is a very slight decrease in HIV prevalence as generic medicines become more available, but overall the graph shows that there is little correlation between the two variables. Although this is not definitive because the generic medicine availability data is not quite as comprehensive as the HIV prevalence data, having far less data points overall.
 
-> `r msg` Hope you have a good day!! 
 
 ## ABOUT THIS FILE: 
 
@@ -43,12 +51,11 @@ When you click the **Knit** button a document will be generated that includes bo
 summary(cars)
 ```
 
-## Including Plots
+## Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r Graph3, echo=FALSE}
+source("../source/chart3.R")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
