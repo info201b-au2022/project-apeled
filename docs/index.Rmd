@@ -70,4 +70,3 @@ source("../source/chart3.R")
 ```
 
 
->>>>>>> 3ff6f99c2a80a53df7ae9bd5056efa0208830fc1
