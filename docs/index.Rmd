@@ -16,7 +16,7 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 The graphs presented below combine data presented from three different datasets who on average observe `r summary_info$average_observations` different countries around the world. The highest average health expenditure per capita in USD is `r summary_info$max_mean_che`. The country responsible for such high CHE is `r summary_info$max_mean_che_country`, indicating that they allocate many funds towards healthcare for their citizens. The highest average generic medicine availability is `r summary_info$max_mean_med` and that is provided by the `r summary_info$max_mean_med_country`. This is the first indication the not all the allocation of funds goes towards providing citizens with generic medicine as `r summary_info$max_mean_che_country` and `r summary_info$max_mean_med_country` differ in its availbility. The rest of this report further assesses the relation between health expenditure per capita, median availability of selected generic medicine, and the estimated prevalence of HIV among adults.
 
 ## Table:
-```{r}
+```{r, echo = FALSE}
 source("../source/table_summary.R")
 knitr::kable(summary_table, format="html")
 ```
