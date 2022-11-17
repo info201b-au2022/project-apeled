@@ -49,9 +49,9 @@ HIV_data <- HIV_data %>%
   mutate("Median Prevalence of HIV 2007-2013 (%)" = rowMeans(HIV_data[,24:30], na.rm = TRUE))
 
 merged_data <- inner_join(HIV_data, Med_data, by = "Country")
+merged_data <- merged_data %>%
+  select(Country, `Median Prevalence of HIV 2007-2013 (%)`, `Median Availability of Generic Medicines 2007-2013 (%)`)
 
-Graph3 <- ggplot(data = merged_data) +
-  geom_point(mapping =  aes(x = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`, color = Country))
+Graph3 <- ggplot(data = merged_data, aes(x = Country, fill = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`)) +
+  geom_bar(position = "dodge", stat = "identity")
 print(Graph3)
-
-#

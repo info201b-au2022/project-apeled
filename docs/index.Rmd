@@ -6,33 +6,35 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+source("../source/calculates_summary_information.R")
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
 ```
 
 ## Dynamic Report
 
-* INSERT REPORT HERE
+The graphs presented below combine data presented from three different datasets who on average observe `r summary_info$average_observations` different countries around the world. The highest average health expenditure per capita in USD is `r summary_info$max_mean_che`. The country responsible for such high CHE is `r summary_info$max_mean_che_country`, indicating that they allocate many funds towards healthcare for their citizens. The highest average generic medicine availability is `r summary_info$max_mean_med` and that is provided by the `r summary_info$max_mean_med_country`. This is the first indication the not all the allocation of funds goes towards providing citizens with generic medicine as `r summary_info$max_mean_che_country` and `r summary_info$max_mean_med_country` differ in its availbility. The rest of this report further assesses the relation between health expenditure per capita, median availability of selected generic medicine, and the estimated prevalence of HIV among adults.
 
-## Table
+## Table:
 ```{r}
 source("../source/table_summary.R")
 knitr::kable(summary_table, format="html")
 ```
 
 
+This table compiles the mean values of each of the three data sets used for this research. The data was extracted from each dataset, and a new column was made to calculate the average respective values for each country between 2007 and 2013. This was done in order to ensure that the comparisons being made between the datasets was done on a consistent timeline, matching the data to the correct values. After a column with average values were made within each of the three datasets, they were joined together into this summary table by matching the Country names to one another. The average health expenditure per capita in USD, average median availability of selected generic medicine, and average estimated prevalence of HIV among adults is displayed for each country with information in this table.
+
 ### Chart 01:
 ``` {r chart3, echo = FALSE}
 source("../source/chart3.R")
 ```
+
 The purpose of this chart is to compare the two variables of median availability of generic medicines and median prevalence of HIV, to find out if there is any correlation between the two variables. When we look at the chart we can see an almost straight vertical line with an extremely slight negative correlation. This trend suggests that there is a very slight decrease in HIV prevalence as generic medicines become more available, but overall the graph shows that there is little correlation between the two variables. Although this is not definitive because the generic medicine availability data is not quite as comprehensive as the HIV prevalence data, having far less data points overall.
 
 
-## Chart 02:
-
-
-```{r, echo=FALSE}
+### Chart 02:
+```{r graph1, echo=FALSE}
 source("../source/chart1.R")
 ```
 
-
+The purpose of this chart is to compare the two variables of prevalence of HIV and current health expenditure of countries globally. When analyzing the chart you can see that many of the countries with low HIV rates also do not spend nearly as much as other countries on health expenditure. This could be due to other factors like smaller populations as well.

@@ -49,7 +49,17 @@ HIV_data <- HIV_data %>%
   mutate("Median Prevalence of HIV 2007-2013 (%)" = rowMeans(HIV_data[,24:30], na.rm = TRUE))
 
 merged_data <- inner_join(HIV_data, Med_data, by = "Country")
+merged_data <- merged_data %>%
+  select(Country, `Median Prevalence of HIV 2007-2013 (%)`, `Median Availability of Generic Medicines 2007-2013 (%)`)
 
-Graph3 <- ggplot(data = merged_data) +
-  geom_point(mapping =  aes(x = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`, color = Country))
+Graph3 <- ggplot(data = merged_data, aes(x = Country, fill = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`)) +
+  geom_bar(position = "dodge", stat = "identity")
 print(Graph3)
+
+#The purpose of this chart is to compare the two variables, median availability of generic medicines and median prevalence of HIV between a set of chosen countries. 
+#The reason we are comparing these variables is to find out if there is any correlation between the two. When we look at the chart we can see that even countries that have 
+#high availability of generic medicines still have high rates of HIV. We can also see that the places with the highest availability have very low prevalence of HIV, 
+#but this is inconsistent. This trend suggests that there is a very slight decrease in HIV prevalence as 
+#generic medicines become more available, but overall the graph shows that there is little correlation between the two variables. 
+#Although this is not definitive because the generic medicine availability data is not quite as comprehensive as the HIV prevalence data, having far less data points overall.
+
