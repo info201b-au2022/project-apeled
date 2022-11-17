@@ -3,6 +3,7 @@ library("dplyr")
 library("ggplot2")
 library("stringr")
 
+<<<<<<< HEAD
 Medicine_data <- read.csv("https://raw.githubusercontent.com/info201b-au2022/project-apeled/main/data/med_aval.csv")
 HIV_Prev_data <- read.csv("https://raw.githubusercontent.com/info201b-au2022/project-apeled/main/data/prev_hiv.csv")
 CHE_data <- read.csv("https://raw.githubusercontent.com/info201b-au2022/project-apeled/main/data/CHE_data.csv")
@@ -60,3 +61,16 @@ final_merge <- final_merge %>%
 final_merge <- final_merge %>%
   mutate_if(is.numeric, round, digits = 2)
 
+=======
+
+source("https://raw.githubusercontent.com/info201b-au2022/project-apeled/main/source/calculates_summary_information.R")
+
+mean_medicine_data <- rename(mean_medicine_data, Country = X)
+
+summary_table <- mean_CHE_data %>%
+  inner_join(mean_HIV_Prev_data, by = "Country")%>%
+  inner_join(mean_medicine_data, by = "Country")%>%
+  mutate_if(is.numeric, round)
+
+  
+>>>>>>> 3ff6f99c2a80a53df7ae9bd5056efa0208830fc1
