@@ -26,7 +26,7 @@ This table compiles the mean values of each of the three data sets used for this
 
 ### Chart 01:
 ``` {r chart3, echo = FALSE}
-source("../source/chart3.R")
+source("../source/chart2.R")
 ```
 
 The purpose of this chart is to compare the two variables of median availability of generic medicines and median prevalence of HIV, to find out if there is any correlation between the two variables. When we look at the chart we can see an almost straight vertical line with an extremely slight negative correlation. This trend suggests that there is a very slight decrease in HIV prevalence as generic medicines become more available, but overall the graph shows that there is little correlation between the two variables. Although this is not definitive because the generic medicine availability data is not quite as comprehensive as the HIV prevalence data, having far less data points overall.
