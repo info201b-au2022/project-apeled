@@ -30,6 +30,8 @@ hiv$`Prevalence of HIV among adults aged 15 to 49 (%)` <- as.numeric(hiv$`Preval
 merged_data <- inner_join(hiv, health_expenditure, by = "Country")
 
 graph2 <- ggplot(data = merged_data) +
-  geom_dotplot(mapping =  aes(x = `Prevalence of HIV among adults aged 15 to 49 (%)`, 
+  geom_point(mapping =  aes(x = `Prevalence of HIV among adults aged 15 to 49 (%)`, 
                             y = `Current health expenditure (CHE) per capita in US$`,
                             color = Country))
+
+
