@@ -32,6 +32,10 @@ merged_data <- inner_join(hiv, health_expenditure, by = "Country")
 graph2 <- ggplot(data = merged_data) +
   geom_point(mapping =  aes(x = `Prevalence of HIV among adults aged 15 to 49 (%)`, 
                             y = `Current health expenditure (CHE) per capita in US$`,
-                            color = Country))
+                            color = Country)) +
+  theme(legend.key.size = unit(0.2, "cm")) +
+  theme(legend.position="bottom")
 
+
+print(graph2)
 
