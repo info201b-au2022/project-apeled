@@ -20,19 +20,6 @@ source("../source/table_summary.R")
 knitr::kable(summary_table, format="html")
 ```
 
-```{r, results='asis'}
-writeLines("td, th { padding : 6px } th { background-color : brown ; color : white; border : 1px solid white; } td { color : brown ; border : 1px solid brown }", con = "mystyle.css")
-source("../source/table_summary.R")
-knitr::kable(summary_table, format = "html")
-```
-
-```{r summary_table, echo=FALSE}
-# Example 1: Note relative path, which can be read: Up one
-# directory(..), down into source (/source), and 
-# then "source" an R file (data_access.R)
-source("../source/table_summary.R")
-
-```
 
 ### Chart 01:
 ``` {r chart3, echo = FALSE}
@@ -41,21 +28,11 @@ source("../source/chart3.R")
 The purpose of this chart is to compare the two variables of median availability of generic medicines and median prevalence of HIV, to find out if there is any correlation between the two variables. When we look at the chart we can see an almost straight vertical line with an extremely slight negative correlation. This trend suggests that there is a very slight decrease in HIV prevalence as generic medicines become more available, but overall the graph shows that there is little correlation between the two variables. Although this is not definitive because the generic medicine availability data is not quite as comprehensive as the HIV prevalence data, having far less data points overall.
 
 
-## ABOUT THIS FILE: 
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Plots
+## Chart 02:
 
 
-```{r Graph3, echo=FALSE}
-source("../source/chart3.R")
+```{r, echo=FALSE}
+source("../source/chart1.R")
 ```
 
 
