@@ -2,8 +2,7 @@
 
 |Source Directories | Brief Description|
 |---------------| -----------------|
-|[app.R](https://github.com/info201b-au2022/a5-apeled/blob/44d7a10ef1a5aa239cf19561f7113a9e03eadf3c/source/app.R) | A .R source file that contains the app information
-|[app_server.R](https://github.com/info201b-au2022/a5-apeled/blob/44d7a10ef1a5aa239cf19561f7113a9e03eadf3c/source/app_server.R) | A .R source file that initializes the app_server
-|[app_ui.R](https://github.com/info201b-au2022/a5-apeled/blob/44d7a10ef1a5aa239cf19561f7113a9e03eadf3c/source/app_ui.R) | A .R source file that initializes the app_ui
-
-
+|[calculates_summary_information.R](https://github.com/info201b-au2022/project-apeled/blob/67823f07f8f1f611ecfb14b6d296367b9a2124b9/source/calculates_summary_information.R) | A .R source file that calculates summary information to be included in your report
+|[table_summary.R](https://github.com/info201b-au2022/project-apeled/blob/67823f07f8f1f611ecfb14b6d296367b9a2124b9/source/table_summary.R) | A .R source file that creates a table of summary information to be included in your report
+|[chart1.R](https://github.com/info201b-au2022/project-apeled/blob/5106caaad963c599be2a2b488d6d1fc768fcea43/source/chart1.R) | A .R source file that creates our first chart
+|[chart2.R](https://github.com/info201b-au2022/project-apeled/blob/67823f07f8f1f611ecfb14b6d296367b9a2124b9/source/chart2.R) | A .R source file that creates our second chart
