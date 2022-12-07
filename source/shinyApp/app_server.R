@@ -75,7 +75,7 @@ server <- function(input, output) {
   #### SAMPLE CODE: REFERENCE ####
   ####                        ####
   
-
+  
   # # creating plot with outputId = "co2_per_capita_year"
   # output$co2_per_capita_year <- renderPlot({
   #   

@@ -114,7 +114,7 @@ Shawn Leonard (sleo14@uw.edu)
 ## **Findings**
 Assuming you answer your research questions, briefly describe the expected or possible implications for technologists, designers, and policymakers.
 
-![covid daily case chart](image_example2.png)
+![che_dataset](source/shinyApp/www/che_dataset.PNG)
 
 """
 (TODO FINAL PROJECT)
