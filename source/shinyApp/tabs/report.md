@@ -114,7 +114,7 @@ Shawn Leonard (sleo14@uw.edu)
 ## **Findings**
 Assuming you answer your research questions, briefly describe the expected or possible implications for technologists, designers, and policymakers.
 
-![che_dataset](source/shinyApp/www/che_dataset.PNG)
+![che_dataset](che_dataset.PNG)
 
 """
 (TODO FINAL PROJECT)
