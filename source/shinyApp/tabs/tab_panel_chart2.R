@@ -12,7 +12,7 @@ tab_panel_chart2 <-tabPanel(
                   max = nrow(merged_data), value = nrow(merged_data))
     ),
     mainPanel(
-      plotOutput(outputId = "chart2")
+      plotOutput(outputId = "chart2", height = 800)
     )
   )
   
