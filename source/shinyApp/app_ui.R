@@ -31,7 +31,7 @@ ui <- navbarPage(
   footer = list(
     tags$style(type = "text/css", "body {padding-top: 70px;}"),
     hr(),
-    HTML("... Project Footer ... "),
+    HTML("Allocation of Health | P3: Final Deliverable | Info 201: Fall 2022 | Amit Peled, Jeffrey Zeng, Shawn Leonard "),
     hr()
   ),
 
