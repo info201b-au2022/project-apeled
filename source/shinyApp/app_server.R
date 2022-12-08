@@ -215,27 +215,92 @@ server <- function(input, output) {
   output$value <- renderPrint({ input$country })
   
   ####                        ####
-  #### SAMPLE CODE: REFERENCE ####
+  ####       SUMMARY CODE     ####
   ####                        ####
+  # initialize the summary tables
+  summary_hiv_data <- hiv_data
+  summary_che_data <- che_data
+  summary_med_data <- med_data
+  #Extract the column names
+  names(summary_hiv_data) <- summary_hiv_data[1,]
+  summary_hiv_data = summary_hiv_data[-1,]
   
+  summary_hiv_data <- summary_hiv_data[summary_hiv_data$` 2021` != "No data",]
   
-  # # creating plot with outputId = "co2_per_capita_year"
-  # output$co2_per_capita_year <- renderPlot({
-  #   
-  #   # Uses dataframe called "co2_data"
-  #   # DLPYR DONE INSIDE PLOT RENDER
-  #   co2_year <- co2_data %>%
-  #     filter(year <= input$year_plot1) %>%      # input corresponds to "year_plot1" found in tab_panel____.R
-  #     group_by(year) %>%
-  #     mutate(average_co2 = mean(co2, na.rm=TRUE)) %>%
-  #     select(year, average_co2)
-  #   
-  #   # plotting the manipulated dataframe
-  #   plot(co2_year,
-  #        xlab = "Waiting time to next eruption (in mins)",
-  #        ylab = "Annual total production-based emissions of carbon dioxide (CO₂)",
-  #        main = "Histogram of waiting times")
-  # })
+  names(summary_che_data) <- summary_che_data[1,]
+  summary_che_data <- summary_che_data[-1,]
+  
+  # Clean the HIV_Prev data
+  summary_hiv_data[summary_hiv_data=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.1"
+  summary_hiv_data[summary_hiv_data=="&lt;0.1 [&lt;0.1-&lt;0.1]"] <- "0.1"
+  summary_hiv_data[summary_hiv_data=="&lt;0.1 [&lt;0.1-0.1]"] <- "0.1"
+  summary_hiv_data[summary_hiv_data=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.1"
+  
+  summary_hiv_data <- summary_hiv_data %>%
+    mutate(data_2013 = str_remove(summary_hiv_data$` 2013`, "\\[.*"))%>%
+    mutate(data_2012 = str_remove(summary_hiv_data$` 2012`, "\\[.*"))%>%
+    mutate(data_2011 = str_remove(summary_hiv_data$` 2011`, "\\[.*"))%>%
+    mutate(data_2010 = str_remove(summary_hiv_data$` 2010`, "\\[.*"))%>%
+    mutate(data_2009 = str_remove(summary_hiv_data$` 2009`, "\\[.*"))%>%
+    mutate(data_2008 = str_remove(summary_hiv_data$` 2008`, "\\[.*"))%>%
+    mutate(data_2007 = str_remove(summary_hiv_data$` 2007`, "\\[.*"))
+  
+  # Make it numeric values
+  summary_hiv_data$data_2013 <- as.numeric(summary_hiv_data$data_2013)
+  summary_hiv_data$data_2012 <- as.numeric(summary_hiv_data$data_2012)
+  summary_hiv_data$data_2011 <- as.numeric(summary_hiv_data$data_2011)
+  summary_hiv_data$data_2010 <- as.numeric(summary_hiv_data$data_2010)
+  summary_hiv_data$data_2009 <- as.numeric(summary_hiv_data$data_2009)
+  summary_hiv_data$data_2008 <- as.numeric(summary_hiv_data$data_2008)
+  summary_hiv_data$data_2007 <- as.numeric(summary_hiv_data$data_2007)  
+  
+  # Calculate mean columns for each dataframe
+  mean_summary_hiv_data <- summary_hiv_data %>%
+    mutate("Mean Prevalence of HIV 2007-2013 (%)" = rowMeans(summary_hiv_data[,24:30], na.rm = TRUE))%>%
+    select(Country, `Mean Prevalence of HIV 2007-2013 (%)`)
+  mean_CHE_data <- summary_che_data %>%
+    mutate("Mean Health Expenditure 2007-2013 ($)" = rowMeans(summary_che_data[,8:14], na.rm = TRUE)) %>%
+    select(Country, `Mean Health Expenditure 2007-2013 ($)`)
+  mean_medicine_data <- summary_med_data %>%
+    mutate("Mean Availability of Generic Medicine 2007-2013" = 
+             ((as.numeric(summary_med_data$Median.availability.of.selected.generic.medicines.......Private) +
+                 as.numeric(summary_med_data$Median.availability.of.selected.generic.medicines.......Public))/2), na.rm = TRUE) %>%
+    filter(!is.na(as.numeric(Median.availability.of.selected.generic.medicines.......Private))) %>%
+    select(X, `Mean Availability of Generic Medicine 2007-2013`)
+  
+  mean_medicine_data <- rename(mean_medicine_data, Country = X)
+  
+  # Join the mean columns on the basis of Country name
+  summary_table <- mean_CHE_data %>%
+    full_join(mean_summary_hiv_data, by = "Country")%>%
+    full_join(mean_medicine_data, by = "Country")%>%
+    mutate_if(is.numeric, round)
+  # output
+  
+  output$summaryTableHIV<- renderTable({
+    present_hiv_summary_table <- summary_table %>%
+      top_n(5, `Mean Prevalence of HIV 2007-2013 (%)`) %>%
+      arrange(desc(`Mean Prevalence of HIV 2007-2013 (%)`)) %>%
+      select(Country, `Mean Prevalence of HIV 2007-2013 (%)`)
+    
+    present_hiv_summary_table
+  })
+  output$summaryTableCHE<- renderTable({
+    present_che_summary_table <- summary_table %>%
+      top_n(5, `Mean Health Expenditure 2007-2013 ($)`) %>%
+      arrange(desc(`Mean Health Expenditure 2007-2013 ($)`)) %>%
+      select(Country, `Mean Health Expenditure 2007-2013 ($)`)
+    
+    present_che_summary_table
+  })
+  output$summaryTableMED<- renderTable({
+    present_med_summary_table <- summary_table %>%
+      top_n(5, `Mean Availability of Generic Medicine 2007-2013`) %>%
+      arrange(desc(`Mean Availability of Generic Medicine 2007-2013`)) %>%
+      select(Country, `Mean Availability of Generic Medicine 2007-2013`)
+    
+    present_med_summary_table
+  })
 
 }
 
