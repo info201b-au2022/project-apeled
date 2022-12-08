@@ -56,10 +56,87 @@ server <- function(input, output) {
   #### CHART 1: SHAWN SECTION ####
   ####                        ####
   
+  # Try to implement this, if not no biggie
+  #
+  
+  ## Set up initial dataframes
+  #
+  # formulate che_data for chart 1
+  #
+  che_data_chart1 <- che_data
+  names(che_data_chart1) <- che_data_chart1[1,]
+  che_data_chart1 <- che_data_chart1[-1,]
+  che_data_chart1 <- che_data_chart1[!is.na(che_data_chart1$`2019`),]
+  che_data_chart1 <- che_data_chart1 %>%
+    mutate("Current health expenditure (CHE) per capita in US$" = che_data_chart1$`2019`) %>%
+    select(Country, `Current health expenditure (CHE) per capita in US$`)
+  #
+  # formulate hiv_data for chart 1
+  #
+  hiv_data_chart1 <- hiv_data
+  names(hiv_data_chart1) <- hiv_data_chart1[1,]
+  hiv_data_chart1 <- hiv_data_chart1[-1,]
+  hiv_data_chart1 <- hiv_data_chart1[hiv_data_chart1$` 2019` != "No data",]
+  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.1"
+  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-&lt;0.1]"] <- "0.1"
+  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.1]"] <- "0.1"
+  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.1"
+
+  hiv_data_chart1 <- hiv_data_chart1 %>%
+    mutate("Prevalence of HIV among adults aged 15 to 49 (%)" = str_remove(hiv_data_chart1$` 2019`, "\\[.*")) %>%
+    select(Country, `Prevalence of HIV among adults aged 15 to 49 (%)`)
+
+  hiv_data_chart1$`Prevalence of HIV among adults aged 15 to 49 (%)` <- as.numeric(hiv_data_chart1$`Prevalence of HIV among adults aged 15 to 49 (%)`)
+
+  merged_data <- inner_join(hiv_data_chart1, che_data_chart1, by = "Country")
+  merged_data <- rename(merged_data, region = Country)
+  # 
+  ##
+  # Load the library "maps"
+  #
+  library(maps)
+  #
+  # Data wrangling function that returns a data frame that is suitable for 
+  # visualization. The function uses the map data provided by R for each country
+  # The 'merged_data' DF from Shawns Chart 1 was wranggled to return certain  
+  # countries that are within the inputs lower and upper limits for HIV_Prev
+  #
+  #   
+  country_map_data <- map_data("world")
+  #
+
+  output$hiv_prev_chart <- renderPlot({
+    final_data <- merged_data %>%
+      filter(`Prevalence of HIV among adults aged 15 to 49 (%)` <= max(input$hiv_range)) %>%
+      filter(`Prevalence of HIV among adults aged 15 to 49 (%)` >= min(input$hiv_range))
+  
+    merged_data <- inner_join(country_map_data, final_data, by='region')
+  
+    chart1 <- ggplot() +
+      geom_polygon(data=merged_data, 
+                   aes(x=long, y=lat, group=group, fill = `Current health expenditure (CHE) per capita in US$`), 
+                   color="white", size = 0.2) +
+      scale_fill_continuous(name="Current health expenditure (CHE) per capita in US$", 
+                            low = "lightgreen", high = "darkblue", na.value = "grey50") +
+      
+      labs(title="Jail Population Ratio (Male to Female) in the Mainland United States in 2018",
+           x="Longitude",
+           y="Latitude")
+    chart1
+  })
+  # 
+  #
+
   
   
-  
-  
+  #
+  #
+  #
+  #
+  # Plotting function that returns the visual for countries selected. 
+  # Population Ratio (Male to Female) in the Mainland United States in 2018. This 
+  # function takes no parameters and calls the data wrangling function 
+  # "get_jail_pop_by_gender_map" as it uses the data frame constructed there.
   
   
   

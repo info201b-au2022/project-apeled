@@ -13,7 +13,7 @@ health_expenditure <- health_expenditure %>%
 
 hiv <- read.csv("https://raw.githubusercontent.com/info201b-au2022/project-apeled/main/data/prev_hiv.csv")
 names(hiv) <- hiv[1,]  
-hiv = hiv[-1,]
+hiv <- hiv[-1,]
 
 hiv <- hiv[hiv$` 2019` != "No data",]
 hiv[hiv=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.1"
