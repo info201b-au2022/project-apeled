@@ -1,0 +1,13 @@
+name: shinyapp
+title:
+username:
+account: apeled
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7851058
+bundleId: 6612173
+url: https://apeled.shinyapps.io/shinyapp/
+when: 1670531450.54866
+lastSyncTime: 1670531450.54867
+asMultiple: FALSE
+asStatic: FALSE
