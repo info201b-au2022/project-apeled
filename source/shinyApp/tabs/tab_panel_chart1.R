@@ -11,8 +11,8 @@ tab_panel_chart1 <-tabPanel(
     
     # Sidebar panel for inputs ----
     sidebarPanel(
-      sliderInput("hiv_range", label = h3("HIV Prevelance Slider"), min = 0.0, 
-                  max = 1.0, value = c(0.2, 0.5))
+      sliderInput("hiv_range", label = h3("HIV Prevelance Slider"), min = 0.1, 
+                  max = 22.3, value = c(0.1, 15))
       
     ),
     

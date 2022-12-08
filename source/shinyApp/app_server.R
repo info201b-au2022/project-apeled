@@ -34,6 +34,9 @@ load_che_data <- function() {
   return(df)
 }
 
+####                        ####
+#### CHART 1: SHAWN SECTION ####
+####                        ####
 
 # server function: inputs should be in your panel tabs
 server <- function(input, output) {
@@ -81,15 +84,15 @@ server <- function(input, output) {
   hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-&lt;0.1]"] <- "0.1"
   hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.1]"] <- "0.1"
   hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.1"
-
+  
   hiv_data_chart1 <- hiv_data_chart1 %>%
     mutate("Prevalence of HIV among adults aged 15 to 49 (%)" = str_remove(hiv_data_chart1$` 2019`, "\\[.*")) %>%
     select(Country, `Prevalence of HIV among adults aged 15 to 49 (%)`)
-
+  
   hiv_data_chart1$`Prevalence of HIV among adults aged 15 to 49 (%)` <- as.numeric(hiv_data_chart1$`Prevalence of HIV among adults aged 15 to 49 (%)`)
-
-  merged_data <- inner_join(hiv_data_chart1, che_data_chart1, by = "Country")
-  merged_data <- rename(merged_data, region = Country)
+  
+  merged_data_chart1 <- inner_join(hiv_data_chart1, che_data_chart1, by = "Country")
+  merged_data_chart1 <- rename(merged_data_chart1, region = Country)
   # 
   ##
   # Load the library "maps"
@@ -98,22 +101,22 @@ server <- function(input, output) {
   #
   # Data wrangling function that returns a data frame that is suitable for 
   # visualization. The function uses the map data provided by R for each country
-  # The 'merged_data' DF from Shawns Chart 1 was wranggled to return certain  
+  # The 'merged_data_chart1' DF from Shawns Chart 1 was wranggled to return certain  
   # countries that are within the inputs lower and upper limits for HIV_Prev
   #
   #   
   country_map_data <- map_data("world")
   #
-
+  
   output$hiv_prev_chart <- renderPlot({
-    final_data <- merged_data %>%
+    final_data <- merged_data_chart1 %>%
       filter(`Prevalence of HIV among adults aged 15 to 49 (%)` <= max(input$hiv_range)) %>%
       filter(`Prevalence of HIV among adults aged 15 to 49 (%)` >= min(input$hiv_range))
-  
-    merged_data <- inner_join(country_map_data, final_data, by='region')
-  
+    
+    merged_data_chart1 <- inner_join(country_map_data, final_data, by='region')
+    
     chart1 <- ggplot() +
-      geom_polygon(data=merged_data, 
+      geom_polygon(data=merged_data_chart1, 
                    aes(x=long, y=lat, group=group, fill = `Current health expenditure (CHE) per capita in US$`), 
                    color="white", size = 0.2) +
       scale_fill_continuous(name="Current health expenditure (CHE) per capita in US$", 
@@ -143,54 +146,62 @@ server <- function(input, output) {
   ####                          ####
   #### CHART 2: JEFFERY SECTION ####
   ####                          ####
-  names(hiv_data) <- hiv_data[1,]
-  hiv_data = hiv_data[-1,]
+  #
+  # formulate hiv_data for chart 2
+  #
+  hiv_data_chart2 <- hiv_data
+  names(hiv_data_chart2) <- hiv_data_chart2[1,]
+  hiv_data_chart2 = hiv_data_chart2[-1,]
   
-  hiv_data <- hiv_data[hiv_data$` 2021` != "No data",]
+  hiv_data_chart2 <- hiv_data_chart2[hiv_data_chart2$` 2021` != "No data",]
   
-  names(med_data) <- med_data[1,]
-  med_data = med_data[-1,]
-  med_data = med_data[-3]
+  #
+  # formulate med_data for chart 2
+  #
+  med_data_chart2 <- med_data
+  names(med_data_chart2) <- med_data_chart2[1,]
+  med_data_chart2 = med_data_chart2[-1,]
+  med_data_chart2 = med_data_chart2[-3]
   
-  colnames(med_data)[2] = "Median Availability of Generic Medicines 2007-2013 (%)"
+  colnames(med_data_chart2)[2] = "Median Availability of Generic Medicines 2007-2013 (%)"
   
-  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.1"
-  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-&lt;0.1]"] <- "0.1"
-  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-0.1]"] <- "0.1"
-  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.1"
+  hiv_data_chart2[hiv_data_chart2=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.1"
+  hiv_data_chart2[hiv_data_chart2=="&lt;0.1 [&lt;0.1-&lt;0.1]"] <- "0.1"
+  hiv_data_chart2[hiv_data_chart2=="&lt;0.1 [&lt;0.1-0.1]"] <- "0.1"
+  hiv_data_chart2[hiv_data_chart2=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.1"
   
-  hiv_data <- hiv_data %>%
-    mutate(data_2013 = str_remove(hiv_data$` 2013`, "\\[.*"))
-  hiv_data <- hiv_data %>%
-    mutate(data_2012 = str_remove(hiv_data$` 2012`, "\\[.*"))
-  hiv_data <- hiv_data %>%
-    mutate(data_2011 = str_remove(hiv_data$` 2011`, "\\[.*"))
-  hiv_data <- hiv_data %>%
-    mutate(data_2010 = str_remove(hiv_data$` 2010`, "\\[.*"))
-  hiv_data <- hiv_data %>%
-    mutate(data_2009 = str_remove(hiv_data$` 2009`, "\\[.*"))
-  hiv_data <- hiv_data %>%
-    mutate(data_2008 = str_remove(hiv_data$` 2008`, "\\[.*"))
-  hiv_data <- hiv_data %>%
-    mutate(data_2007 = str_remove(hiv_data$` 2007`, "\\[.*"))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate(data_2013 = str_remove(hiv_data_chart2$` 2013`, "\\[.*"))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate(data_2012 = str_remove(hiv_data_chart2$` 2012`, "\\[.*"))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate(data_2011 = str_remove(hiv_data_chart2$` 2011`, "\\[.*"))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate(data_2010 = str_remove(hiv_data_chart2$` 2010`, "\\[.*"))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate(data_2009 = str_remove(hiv_data_chart2$` 2009`, "\\[.*"))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate(data_2008 = str_remove(hiv_data_chart2$` 2008`, "\\[.*"))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate(data_2007 = str_remove(hiv_data_chart2$` 2007`, "\\[.*"))
   
-  hiv_data$data_2013 <- as.numeric(hiv_data$data_2013)
-  hiv_data$data_2012 <- as.numeric(hiv_data$data_2012)
-  hiv_data$data_2011 <- as.numeric(hiv_data$data_2011)
-  hiv_data$data_2010 <- as.numeric(hiv_data$data_2010)
-  hiv_data$data_2009 <- as.numeric(hiv_data$data_2009)
-  hiv_data$data_2008 <- as.numeric(hiv_data$data_2008)
-  hiv_data$data_2007 <- as.numeric(hiv_data$data_2007)
+  hiv_data_chart2$data_2013 <- as.numeric(hiv_data_chart2$data_2013)
+  hiv_data_chart2$data_2012 <- as.numeric(hiv_data_chart2$data_2012)
+  hiv_data_chart2$data_2011 <- as.numeric(hiv_data_chart2$data_2011)
+  hiv_data_chart2$data_2010 <- as.numeric(hiv_data_chart2$data_2010)
+  hiv_data_chart2$data_2009 <- as.numeric(hiv_data_chart2$data_2009)
+  hiv_data_chart2$data_2008 <- as.numeric(hiv_data_chart2$data_2008)
+  hiv_data_chart2$data_2007 <- as.numeric(hiv_data_chart2$data_2007)
   
-  hiv_data <- hiv_data %>%
-    mutate("Median Prevalence of HIV 2007-2013 (%)" = rowMeans(hiv_data[,24:30], na.rm = TRUE))
+  hiv_data_chart2 <- hiv_data_chart2 %>%
+    mutate("Median Prevalence of HIV 2007-2013 (%)" = rowMeans(hiv_data_chart2[,24:30], na.rm = TRUE))
   
-  merged_data <- inner_join(hiv_data, med_data, by = "Country")
-  merged_data <- merged_data %>%
+  merged_data_chart2 <- inner_join(hiv_data_chart2, med_data_chart2, by = "Country")
+  merged_data_chart2 <- merged_data_chart2 %>%
     select(Country, `Median Prevalence of HIV 2007-2013 (%)`, `Median Availability of Generic Medicines 2007-2013 (%)`)
   
   chart_1_df <- reactive ({
-    c1_df <- merged_data[sample(x=1:nrow(merged_data), size = input$country),]
+    c1_df <- merged_data_chart2[sample(x=1:nrow(merged_data_chart2), size = input$country),]
   })
   
   output$chart2 <- renderPlot({
