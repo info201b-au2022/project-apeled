@@ -122,7 +122,7 @@ Assuming you answer your research questions, briefly describe the expected or po
 
 ## **Discussion**
 """
-(TODO FINAL PROJECT)
+- Using the data in Chart 1, we were able to observe that the countries with the highest HIV prevalence among adults aged 15 to 49 all were the countries that spent the least in current health expenditure. This is important because it establishes a correlation between the lowest spenders and the highest HIV rates. Every country that spent more than $1000 per capita saw HIV prevalence rates lower than 5%. We found that the data in Chart 2 did not produce any reliable correlations between median availability of generic medicines and median prevalence of HIV in the years 2007 through 2013. There were many countries that had a low median availability of generic medicine but still had low HIV prevalence rates, and vice versa. This means that there isn't enough evidence to support the theory that there is a connection between the two variables.
 """
 
 ## **Conclusion**
