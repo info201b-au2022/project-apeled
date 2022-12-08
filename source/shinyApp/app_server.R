@@ -122,9 +122,10 @@ server <- function(input, output) {
       scale_fill_continuous(name="Current health expenditure (CHE) per capita in US$", 
                             low = "lightgreen", high = "darkblue", na.value = "grey50") +
       
-      labs(title="Jail Population Ratio (Male to Female) in the Mainland United States in 2018",
-           x="Longitude",
-           y="Latitude")
+      labs(x="Longitude",
+           y="Latitude",
+           caption = "This chart compares the total health expenditure per capita (in US$) to the prevalence of HIV within a target country's population") +
+      theme(axis.title = element_text(size = 16), axis.text = element_text(size = 13), plot.caption = element_text(size = 12))
     chart1
   })
   # 
@@ -207,7 +208,8 @@ server <- function(input, output) {
   output$chart2 <- renderPlot({
     ggplot(chart_1_df(), aes(x = Country, fill = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`)) +
     geom_bar(position = "dodge", stat = "identity") + 
-    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.5, size = 11)) 
+    theme(axis.title = element_text(size = 16), axis.text = element_text(size = 13), plot.caption = element_text(size = 12), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.5, size = 11)) +
+    labs(caption = "This graph compares the availability of generic medicines by percentage to the percent prevalence of HIV for a country's population.")
   })
   
   output$value <- renderPrint({ input$country })
