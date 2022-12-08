@@ -9,7 +9,7 @@ tab_panel_chart2 <-tabPanel(
   sidebarLayout(
     sidebarPanel(
       sliderInput("country", label = h3("How Many Countries Would You Like to See?"), min = 1, step = 1, 
-                  max = nrow(merged_data_chart2), value = nrow(merged_data_chart2))
+                  max = 34, value = 34)
     ),
     mainPanel(
       plotOutput(outputId = "chart2", height = 700)

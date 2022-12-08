@@ -19,31 +19,5 @@ tab_panel_intro <-tabPanel(
     p(strong("Does availability of generic medicines, and in turn the ability to treat HIV, within a countries population affect how prevalent HIV is within a target countries population?")),
     
     p("By answering these questions we hope to gain insight about the overall health of countries around the world, and to possibly address these issues in the future.")
-    
-    # # SAMPLE CODE FOR FORMATING:
-    # # Sidebar layout with input and output definitions ----
-    #
-    # sidebarLayout(
-    #   
-    #   # Sidebar panel for inputs ----
-    #   sidebarPanel(
-    #     
-    #     # Input: Slider for the number of bins ----
-    #     sliderInput(inputId = "year_plot1",
-    #                 label = "Year:",
-    #                 min = 1750,
-    #                 max = 2021,
-    #                 value = 2021)
-    #     
-    #   ),
-    #   
-    #   # Main panel for displaying outputs ----
-    #   mainPanel(
-    #     
-    #     # Output: Histogram ----
-    #     plotOutput(outputId = "co2_per_capita_year")
-    #     
-    #   )
-    # )
 
 )
