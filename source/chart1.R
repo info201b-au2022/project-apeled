@@ -38,3 +38,4 @@ graph1 <- ggplot(data = merged_data) +
 
 
 print(graph1)
+

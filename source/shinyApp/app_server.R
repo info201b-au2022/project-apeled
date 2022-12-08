@@ -143,10 +143,63 @@ server <- function(input, output) {
   ####                          ####
   #### CHART 2: JEFFERY SECTION ####
   ####                          ####
+  names(hiv_data) <- hiv_data[1,]
+  hiv_data = hiv_data[-1,]
   
+  hiv_data <- hiv_data[hiv_data$` 2021` != "No data",]
   
+  names(med_data) <- med_data[1,]
+  med_data = med_data[-1,]
+  med_data = med_data[-3]
   
+  colnames(med_data)[2] = "Median Availability of Generic Medicines 2007-2013 (%)"
   
+  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.1"
+  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-&lt;0.1]"] <- "0.1"
+  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-0.1]"] <- "0.1"
+  hiv_data[hiv_data=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.1"
+  
+  hiv_data <- hiv_data %>%
+    mutate(data_2013 = str_remove(hiv_data$` 2013`, "\\[.*"))
+  hiv_data <- hiv_data %>%
+    mutate(data_2012 = str_remove(hiv_data$` 2012`, "\\[.*"))
+  hiv_data <- hiv_data %>%
+    mutate(data_2011 = str_remove(hiv_data$` 2011`, "\\[.*"))
+  hiv_data <- hiv_data %>%
+    mutate(data_2010 = str_remove(hiv_data$` 2010`, "\\[.*"))
+  hiv_data <- hiv_data %>%
+    mutate(data_2009 = str_remove(hiv_data$` 2009`, "\\[.*"))
+  hiv_data <- hiv_data %>%
+    mutate(data_2008 = str_remove(hiv_data$` 2008`, "\\[.*"))
+  hiv_data <- hiv_data %>%
+    mutate(data_2007 = str_remove(hiv_data$` 2007`, "\\[.*"))
+  
+  hiv_data$data_2013 <- as.numeric(hiv_data$data_2013)
+  hiv_data$data_2012 <- as.numeric(hiv_data$data_2012)
+  hiv_data$data_2011 <- as.numeric(hiv_data$data_2011)
+  hiv_data$data_2010 <- as.numeric(hiv_data$data_2010)
+  hiv_data$data_2009 <- as.numeric(hiv_data$data_2009)
+  hiv_data$data_2008 <- as.numeric(hiv_data$data_2008)
+  hiv_data$data_2007 <- as.numeric(hiv_data$data_2007)
+  
+  hiv_data <- hiv_data %>%
+    mutate("Median Prevalence of HIV 2007-2013 (%)" = rowMeans(hiv_data[,24:30], na.rm = TRUE))
+  
+  merged_data <- inner_join(hiv_data, med_data, by = "Country")
+  merged_data <- merged_data %>%
+    select(Country, `Median Prevalence of HIV 2007-2013 (%)`, `Median Availability of Generic Medicines 2007-2013 (%)`)
+  
+  chart_1_df <- reactive ({
+    c1_df <- merged_data[sample(x=1:nrow(merged_data), size = input$country),]
+  })
+  
+  output$chart2 <- renderPlot({
+    ggplot(chart_1_df(), aes(x = Country, fill = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`)) +
+    geom_bar(position = "dodge", stat = "identity") + 
+    scale_x_discrete(guide = guide_axis(n.dodge = 3))
+  })
+  
+  output$value <- renderPrint({ input$country })
   
   ####                        ####
   #### SAMPLE CODE: REFERENCE ####
