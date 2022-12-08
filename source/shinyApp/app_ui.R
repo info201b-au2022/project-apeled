@@ -16,7 +16,8 @@ source("tabs/tab_panel_summary.R")
 source("tabs/tab_panel_report.R")
 
 ui <- navbarPage(
-  title = "Project Example",
+  theme = shinythemes::shinytheme("united"),
+  title = "Allocation of Health",
   position = "fixed-top",
 
   # A simple footer
@@ -26,7 +27,6 @@ ui <- navbarPage(
     HTML("Allocation of Health | P3: Final Deliverable | Info 201: Fall 2022 | Amit Peled, Jeffrey Zeng, Shawn Leonard "),
     hr()
   ),
-
   # The project introduction
   tab_panel_intro,
 

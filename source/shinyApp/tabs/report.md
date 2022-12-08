@@ -37,11 +37,6 @@ Shawn Leonard (sleo14@uw.edu)
 - **Similar Research:**
   - A study on the association between medical spending and citizen health was conducted in 2020 on a select group of African countries. Public health financing continues to be “highly unequal as more than 80% of the world's population live in low and middle-income countries but only account for about 20% of global health expenditure” ([National Library of Medicine](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7366161/)). This study focused on prevalence and mortality rates of tuberculosis and HIV. Another article on the relationship between public health spending and the U.S. economy stated that “the indirect costs associated with preventable chronic diseases—costs related to worker productivity as well as the resulting fiscal drag on the nation’s economic output—may exceed $1 trillion per year” ([Harvard School of Public Health](https://www.hsph.harvard.edu/news/magazine/public-health-economy-election/)). Public health is a topic that has both moral and economic implications.
 
-- **Citations:**
-  - Bein, M., & Coker-Farrell, E. Y. (2020, March). The association between medical spending and health status: A study of selected African countries. Malawi medical journal : the journal of Medical Association of Malawi. Retrieved October 31, 2022, from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7366161/
-  - Public health and the U.S. economy. News. (2014, February 19). Retrieved October 31, 2022, from https://www.hsph.harvard.edu/news/magazine/public-health-economy-election/
-  - World Health Organization. (n.d.). Declaration of Alma-Ata. World Health Organization. Retrieved October 31, 2022, from https://www.who.int/teams/social-determinants-of-health/declaration-of-alma-ata
-
 ## **Research Questions**
 - Our first research question is to address if there is a connection between health expenditure and availability of generic medicines, specifically, is there a positive correlation between health expenditure per capita and availability of generic medicines? Answering this question would allow us to gain a better understanding of the impact that expenditure has on not just availability of medicines but by extension health as a whole.
 
@@ -54,9 +49,7 @@ Shawn Leonard (sleo14@uw.edu)
 - **Current Health Expenditure (CHE) per Capita in US$: Data by Country**
   - This dataset contains information regarding the health expenditure per capita in USD for 192 different countries around the world. This dataset will help our project team analyze the allocation of money towards healthcare in different countries and see if any discrepancies between funding and accessibility to medicine or prevalence of HIV exits.
 
-      | Name         | Observations | Variables |
-      |--------------|--------------|-----------|
-      | CHE_data.csv | 192          | 20        |
+![che_dataset](che_dataset.png)
 
   - World Health Organization. Contact Us. [apps.who.int/gho/data/view.main.GHEDCHEpcUSSHA2011v?lang=en](apps.who.int/gho/data/view.main.GHEDCHEpcUSSHA2011v?lang=en). Accessed 31 Oct. 2022.
 
@@ -72,9 +65,7 @@ Shawn Leonard (sleo14@uw.edu)
 - **Median Availability of Selected Generic Medicines: Data by Country**
   - This dataset contains information regarding the median availability of selected generic medicine to both public and private distributions within 37 different countries. This dataset will help our project team analyze the allocation of money towards healthcare in different countries and see if any discrepancies between accessibility to medicine and funding or prevalence of HIV exits.
 
-      | Name         | Observations | Variables |
-      |--------------|--------------|-----------|
-      | med_aval.csv |  37          |  2        |
+![med_dataset](med_avail_dataset.png)
 
   - World Health Organization. Contact Us. [https://apps.who.int/gho/data/node.main.488?lang=en](https://apps.who.int/gho/data/node.main.488?lang=en). Accessed 31 Oct. 2022.
 
@@ -90,9 +81,7 @@ Shawn Leonard (sleo14@uw.edu)
 - **Prevalence of HIV Among Adults Aged 15 to 49: Estimates by Country**
   - This dataset contains information regarding the estimated prevalence of HIV among adults in 194 different countries. This dataset will help our project team analyze the allocation of money towards healthcare in different countries and see if any discrepancies between prevalence of HIV and funding or accessibility to medicine exits.
 
-      | Name         | Observations | Variables |
-      |--------------|--------------|-----------|
-      | prev_hiv.csv | 194          | 22        |
+![hiv_dataset](prev_hiv_dataset.png)
 
   - World Health Organization. Contact Us. [https://apps.who.int/gho/data/view.main.22500?lang=en](https://apps.who.int/gho/data/view.main.22500?lang=en). Accessed 31 Oct. 2022.
 
@@ -112,20 +101,15 @@ Shawn Leonard (sleo14@uw.edu)
 - One of the massive limitations that we need to address is the fact that the amount spent on healthcare is not exactly a perfect reflection of the overall health of a country. Each and every country has its own social and economic factors that may affect the amount that they spend on healthcare and the prevalence of health conditions like HIV within a country’s population. HIV is also not necessarily a perfectly clear indicator of overall health. This is why our conclusions would provide only a loose reflection of the overall health of a country.
 
 ## **Findings**
-Assuming you answer your research questions, briefly describe the expected or possible implications for technologists, designers, and policymakers.
+- The first of the key findings was there did see a negative correlation between health expenditure and prevalence of HIV. If we look at the data the locations with the lowest HIV rates do seem to be the locations that have the highest spending. If we take a deeper look at the graph we can see that many of the locations that have the highest spending, like Australia and Norway, have the lowest rates of HIV. While there are a few lower spending countries that are included in the lowest HIV rates there are no high spending countries within the highest HIV rates. This means that the answer to the question of whether or not there is a correlation between health expenditure and HIV prevalence is that there is likely a negative correlation between the two.
+- The next of our key findings is between availability of generic medicines and HIV and we found that there was little to no correlation between the two. Many of the countries with extremely low availability of medicines still have some of the lowest rates of HIV, this is seen in countries like India and the Philippines. While there are many countries that have high availability and have a low HIV, there are still countries like Zambia or Uganda with higher rates of medicine availability but still relatively high rates of HIV. Due to these findings we can say that there is likely not any correlation between HIV prevalence and availability of generic medicines.
+- For our final research question we were not able to draw any meaningful questions due to the smaller size of our group and limitations in the data. So because of these limitations we were not able to draw any conclusions in regards to any correlations between availability of generic medicines and health expenditure.
 
-![che_dataset](che_dataset.png)
-
-"""
-(TODO FINAL PROJECT)
-"""
 
 ## **Discussion**
-"""
 - Using the data in Chart 1, we were able to observe that the countries with the highest HIV prevalence among adults aged 15 to 49 all were the countries that spent the least in current health expenditure. This is important because it establishes a correlation between the lowest spenders and the highest HIV rates. Every country that spent more than 1000 USD per capita saw HIV prevalence rates lower than 5%. It is clear that the countries who invest properly in their citizens’ health see low HIV prevalence rates, with first world countries like the United States, Switzerland, Norway, and Iceland leading the world in health expenditure spending and having some of the lowest HIV prevalence globally. All of the countries with the HIV rates above 10% spent on average 288 USD per capita, whereas the countries with low rates spent thousands and thousands of dollars per capita.
 - We found that the data in Chart 2 did not produce any reliable correlations between median availability of generic medicines and median prevalence of HIV in the years 2007 through 2013. Initially as we were deciding to research this topic we inferred that countries who had the most available generic medicine would have the lowest HIV prevalence, but this was not always the case. There were many countries that had a low median availability of generic medicine but still had low HIV prevalence rates, and vice versa. For example, a country like India has a 2.8% median generic medicine availability and roughly 2.5% median prevalence of HIV, but a country like Malawi had a much higher median generic medicine availability at 55.6% but also a higher median HIV prevalence at around 12.5%. This means that there isn't enough evidence to support the theory that there is a connection between the two variables.
 
-"""
 
 ## **Conclusion**
 """
@@ -133,20 +117,18 @@ Assuming you answer your research questions, briefly describe the expected or po
 """
 
 #### **Acknowledgements**
-| Is there anyone you would like to thank? A librarian who helped you with your research? A Teaching Assistant? A friend who helped you find your data? Say thank you in this section.
-
-"""
-(TODO FINAL PROJECT)
-"""
+- We would like to thank the teaching team of INFO 201 for providing us the meaningful information needed to formulate such a project. This quarter was taught very well and we feel that the material put forward by the teaching team was well received by us students.
 
 ## **References**
-References  Include citations to your three references. See 2.0 Introduction. If you like, you can cite more than three references.  Please use a standard citation style of your choice.  See [Citing Sources](https://guides.lib.uw.edu/research/citations) at the UW Library
 
-"""
-(TODO FINAL PROJECT)
-"""
+Bein, M., & Coker-Farrell, E. Y. (2020, March). The association between medical spending     and health status: A study of selected African countries. Malawi medical journal : the journal of Medical Association of Malawi. Retrieved October 31, 2022, from [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7366161/](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7366161/)
 
-## **Appendix A**
-"""
-(TODO FINAL PROJECT)
-"""
+Public health and the U.S. economy. News. (2014, February 19). Retrieved October 31, 2022, from [https://www.hsph.harvard.edu/news/magazine/public-health-economy-election/](https://www.hsph.harvard.edu/news/magazine/public-health-economy-election/)
+
+World Health Organization. (n.d.). Declaration of Alma-Ata. World Health Organization. Retrieved October 31, 2022, from [https://www.who.int/teams/social-determinants-of-health/declaration-of-alma-ata](https://www.who.int/teams/social-determinants-of-health/declaration-of-alma-ata)
+
+World Health Organization. (2021). Gho | by category | current health expenditure (che) per capita in US$ - data by country. World Health Organization. Retrieved from [https://apps.who.int/gho/data/view.main.GHEDCHEpcUSSHA2011v?lang=en](https://apps.who.int/gho/data/view.main.GHEDCHEpcUSSHA2011v?lang=en)
+
+World Health Organization. (2021). Gho | by category | median availability of selected generic medicines - data by country. World Health Organization. Retrieved from [https://apps.who.int/gho/data/node.main.488?lang=en](https://apps.who.int/gho/data/node.main.488?lang=en)
+
+World Health Organization. (2021). Gho | by category | prevalence of HIV among adults aged 15 to 49 - estimates by country. World Health Organization. Retrieved from [https://apps.who.int/gho/data/view.main.22500?lang=en](https://apps.who.int/gho/data/view.main.22500?lang=en)

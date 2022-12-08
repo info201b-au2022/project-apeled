@@ -80,10 +80,10 @@ server <- function(input, output) {
   names(hiv_data_chart1) <- hiv_data_chart1[1,]
   hiv_data_chart1 <- hiv_data_chart1[-1,]
   hiv_data_chart1 <- hiv_data_chart1[hiv_data_chart1$` 2019` != "No data",]
-  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.1"
+  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.2]"] <- "0.15"
   hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-&lt;0.1]"] <- "0.1"
   hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.1]"] <- "0.1"
-  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.1"
+  hiv_data_chart1[hiv_data_chart1=="&lt;0.1 [&lt;0.1-0.3]"] <- "0.2"
   
   hiv_data_chart1 <- hiv_data_chart1 %>%
     mutate("Prevalence of HIV among adults aged 15 to 49 (%)" = str_remove(hiv_data_chart1$` 2019`, "\\[.*")) %>%
@@ -91,7 +91,7 @@ server <- function(input, output) {
   
   hiv_data_chart1$`Prevalence of HIV among adults aged 15 to 49 (%)` <- as.numeric(hiv_data_chart1$`Prevalence of HIV among adults aged 15 to 49 (%)`)
   
-  merged_data_chart1 <- inner_join(hiv_data_chart1, che_data_chart1, by = "Country")
+  merged_data_chart1 <- full_join(hiv_data_chart1, che_data_chart1, by = "Country")
   merged_data_chart1 <- rename(merged_data_chart1, region = Country)
   # 
   ##
@@ -107,22 +107,22 @@ server <- function(input, output) {
   #   
   country_map_data <- map_data("world")
   #
+  chart_1_df <- reactive ({
+    merged_data_chart1 <- merged_data_chart1 %>%
+      filter(`Prevalence of HIV among adults aged 15 to 49 (%)` <= max(input$hiv_range)) %>%
+      filter(`Prevalence of HIV among adults aged 15 to 49 (%)` >= min(input$hiv_range)) %>%
+      full_join(country_map_data, by='region')
+  })
   
   output$hiv_prev_chart <- renderPlot({
-    final_data <- merged_data_chart1 %>%
-      filter(`Prevalence of HIV among adults aged 15 to 49 (%)` <= max(input$hiv_range)) %>%
-      filter(`Prevalence of HIV among adults aged 15 to 49 (%)` >= min(input$hiv_range))
-    
-    merged_data_chart1 <- inner_join(country_map_data, final_data, by='region')
-    
-    chart1 <- ggplot() +
-      geom_polygon(data=merged_data_chart1, 
-                   aes(x=long, y=lat, group=group, fill = `Current health expenditure (CHE) per capita in US$`), 
+    chart1 <- ggplot(chart_1_df(), aes(x=long, y=lat, group=group)) + 
+      geom_polygon(aes(fill = `Current health expenditure (CHE) per capita in US$`),
                    color="white", size = 0.2) +
-      scale_fill_continuous(name="Current health expenditure (CHE) per capita in US$", 
-                            low = "lightgreen", high = "darkblue", na.value = "grey50") +
-      
-      labs(x="Longitude",
+      scale_fill_continuous(name="Current health expenditure (CHE) per capita in US$",
+                            low = "orange", high = "blue", na.value = "grey50") +
+
+      labs(title = "Map of Countries with selected HIV Prevelance Rates and the CHE (in USD) of Them",
+           x="Longitude",
            y="Latitude",
            caption = "This chart compares the total health expenditure per capita (in US$) to the prevalence of HIV within a target country's population") +
       theme(axis.title = element_text(size = 16), axis.text = element_text(size = 13), plot.caption = element_text(size = 12))
@@ -201,13 +201,17 @@ server <- function(input, output) {
   merged_data_chart2 <- merged_data_chart2 %>%
     select(Country, `Median Prevalence of HIV 2007-2013 (%)`, `Median Availability of Generic Medicines 2007-2013 (%)`)
   
-  chart_1_df <- reactive ({
-    c1_df <- merged_data_chart2[sample(x=1:nrow(merged_data_chart2), size = input$country),]
-  })
+  chart_2_df <- reactive ({
+    c2_df <- merged_data_chart2[sample(x=1:nrow(merged_data_chart2), size = input$country),]
+    c2_df <- c2_df %>%
+      arrange(`Median Availability of Generic Medicines 2007-2013 (%)`)
+    })
   
   output$chart2 <- renderPlot({
-    ggplot(chart_1_df(), aes(x = Country, fill = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`)) +
+    ggplot(chart_2_df(), aes(x = Country, fill = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`)) +
     geom_bar(position = "dodge", stat = "identity") + 
+    scale_fill_continuous(name="Current health expenditure (CHE) per capita in US$",
+                          low = "orange", high = "blue") +
     theme(axis.title = element_text(size = 16), axis.text = element_text(size = 13), plot.caption = element_text(size = 12), axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.5, size = 11)) +
     labs(caption = "This graph compares the availability of generic medicines by percentage to the percent prevalence of HIV for a country's population.")
   })

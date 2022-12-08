@@ -23,6 +23,12 @@ tab_panel_chart1 <-tabPanel(
       plotOutput(outputId = "hiv_prev_chart", height = 500)
       
     )
-  )
+  ),
+  p(""),
+  p("The purpose of this chart is to compare the two variables of prevalence of ",
+    "HIV and current health expenditure of countries globally. When analyzing the ",
+    "chart you can see that many of the countries with low HIV rates also do not ",
+    "spend nearly as much as other countries on health expenditure. This could be ",
+    "due to other factors like smaller populations as well.")
 )
 
