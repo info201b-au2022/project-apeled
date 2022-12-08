@@ -4,7 +4,7 @@ library(shiny)
 
 tab_panel_intro <-tabPanel(
     "Introduction",
-    p("This is the introduction.")
+    p("The purpose of our project is to compare factors like health care expenditure and availibility of medical resources ")
     
     # # SAMPLE CODE FOR FORMATING:
     # # Sidebar layout with input and output definitions ----

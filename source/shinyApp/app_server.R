@@ -207,7 +207,7 @@ server <- function(input, output) {
   output$chart2 <- renderPlot({
     ggplot(chart_1_df(), aes(x = Country, fill = `Median Prevalence of HIV 2007-2013 (%)`, y = `Median Availability of Generic Medicines 2007-2013 (%)`)) +
     geom_bar(position = "dodge", stat = "identity") + 
-    scale_x_discrete(guide = guide_axis(n.dodge = 3))
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 0.5, size = 11))
   })
   
   output$value <- renderPrint({ input$country })
