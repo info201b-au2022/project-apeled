@@ -18,5 +18,8 @@ tab_panel_summary <-tabPanel(
     
     tableOutput(outputId = "summaryTableMED"),
     
+    h3("Some summary values"),
+    
+    tableOutput(outputId = "summary_information")
 )
 

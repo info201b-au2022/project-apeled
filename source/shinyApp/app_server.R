@@ -16,7 +16,7 @@ library(shiny)
 # Load Data Functions
 
 ## Load Medicine data function 
-load_medicine_data <- function() {
+load_med_data <- function() {
   filename <- "https://raw.githubusercontent.com/info201b-au2022/project-apeled/main/data/med_aval.csv"
   df <- read.csv(filename, header = TRUE, stringsAsFactors = FALSE)
   return(df)
@@ -48,7 +48,7 @@ server <- function(input, output) {
   # CHE data = che_data
   
   # load medicine data
-  med_data <- load_medicine_data()
+  med_data <- load_med_data()
   # load hiv data
   hiv_data <- load_hiv_data()
   # load che data
@@ -261,19 +261,19 @@ server <- function(input, output) {
   mean_CHE_data <- summary_che_data %>%
     mutate("Mean Health Expenditure 2007-2013 ($)" = rowMeans(summary_che_data[,8:14], na.rm = TRUE)) %>%
     select(Country, `Mean Health Expenditure 2007-2013 ($)`)
-  mean_medicine_data <- summary_med_data %>%
+  mean_med_data <- summary_med_data %>%
     mutate("Mean Availability of Generic Medicine 2007-2013" = 
              ((as.numeric(summary_med_data$Median.availability.of.selected.generic.medicines.......Private) +
                  as.numeric(summary_med_data$Median.availability.of.selected.generic.medicines.......Public))/2), na.rm = TRUE) %>%
     filter(!is.na(as.numeric(Median.availability.of.selected.generic.medicines.......Private))) %>%
     select(X, `Mean Availability of Generic Medicine 2007-2013`)
   
-  mean_medicine_data <- rename(mean_medicine_data, Country = X)
+  mean_med_data <- rename(mean_med_data, Country = X)
   
   # Join the mean columns on the basis of Country name
   summary_table <- mean_CHE_data %>%
     full_join(mean_summary_hiv_data, by = "Country")%>%
-    full_join(mean_medicine_data, by = "Country")%>%
+    full_join(mean_med_data, by = "Country")%>%
     mutate_if(is.numeric, round)
   # output
   
@@ -301,6 +301,40 @@ server <- function(input, output) {
     
     present_med_summary_table
   })
+  
+  # summary_info.R 
+  # A source file that takes in a dataset and returns a list of info about it:
+  summary_info <- list()
+  summary_info$average_observations <- round(((nrow(che_data)+nrow(hiv_data)+nrow(med_data))/3))
+  summary_info$max_mean_che <- che_data %>%
+    mutate("Mean Health Expenditure 2007-2013 ($)" = rowMeans(che_data[,8:14], na.rm = TRUE)) %>%
+    filter(`Mean Health Expenditure 2007-2013 ($)` == max(`Mean Health Expenditure 2007-2013 ($)`, na.rm=TRUE)) %>%
+    mutate_if(is.numeric, round)%>%
+    pull(`Mean Health Expenditure 2007-2013 ($)`)
+  
+  summary_info$max_mean_che_country <- che_data %>%
+    mutate("Mean Health Expenditure 2007-2013 ($)" = rowMeans(che_data[,8:14], na.rm = TRUE)) %>%
+    filter(`Mean Health Expenditure 2007-2013 ($)` == max(`Mean Health Expenditure 2007-2013 ($)`, na.rm=TRUE)) %>%
+    pull(X)
+  
+  summary_info$max_mean_med <- med_data %>%
+    mutate("Mean Availability of Generic Medicine 2007-2013" = 
+             ((as.numeric(med_data$Median.availability.of.selected.generic.medicines.......Private) +
+                 as.numeric(med_data$Median.availability.of.selected.generic.medicines.......Public))/2), na.rm = TRUE) %>%
+    filter(`Mean Availability of Generic Medicine 2007-2013` == max(`Mean Availability of Generic Medicine 2007-2013`, na.rm = TRUE)) %>%
+    mutate_if(is.numeric, round)%>%
+    pull(`Mean Availability of Generic Medicine 2007-2013`)
+  
+  summary_info$max_mean_med_country <- med_data %>%
+    mutate("Mean Availability of Generic Medicine 2007-2013" = 
+             ((as.numeric(med_data$Median.availability.of.selected.generic.medicines.......Private) +
+                 as.numeric(med_data$Median.availability.of.selected.generic.medicines.......Public))/2), na.rm = TRUE) %>%
+    filter(`Mean Availability of Generic Medicine 2007-2013` == max(`Mean Availability of Generic Medicine 2007-2013`, na.rm = TRUE)) %>%
+    pull(X)
+  
+  output$summary_information <- renderTable(
+    summary_info
+  )
 
 }
 
